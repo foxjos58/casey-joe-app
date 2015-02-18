@@ -1,8 +1,16 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:colorPrimary">#F01F5A</item>
+        <item name="colorPrimary">#F01F5A</item>
+    </style>
+
+    <color name="primary_text">#ff333335</color>
+
+    <style name="PrimaryText">
+        <item name="android:textColor">@color/primary_text</item>
+        <item name="android:textSize">16dp</item>
     </style>
 
 </resources>

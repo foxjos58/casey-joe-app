@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:padding="24dp"
+    android:background="@android:color/white">
+    <ImageView
+        android:id="@+id/symbol"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/choice0"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:background="@drawable/pink_circle"
+            android:text="ka"
+            android:textSize="32dp"
+            android:textAllCaps="false"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/choice1"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:background="@drawable/pink_circle"
+            android:text="ka"
+            android:textSize="32dp"
+            android:textAllCaps="false"/>
+
+     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/choice2"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:background="@drawable/pink_circle"
+            android:text="ka"
+            android:textSize="32dp"
+            android:textAllCaps="false"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/choice3"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:background="@drawable/pink_circle"
+            android:text="ka"
+            android:textSize="32dp"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+       <Button
+           android:id="@+id/view_all"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textColor="?colorPrimary"
+           android:text="View all"
+           android:background="?android:selectableItemBackground"/>
+        <Button
+            android:id="@+id/bookmarked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="?colorPrimary"
+            android:text="Bookmarked"
+            android:background="?android:selectableItemBackground"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="16dp"
+        android:background="#448866"/>
+
+</LinearLayout>

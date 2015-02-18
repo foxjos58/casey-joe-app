@@ -1,18 +1,30 @@
-package joecasey.com.nothingyet;
+package joecasey.com.nothingyet.base;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import joecasey.com.nothingyet.R;
 
-public class MyActivity extends Activity {
+/**
+ * Created by Joe F on 2/17/2015.
+ */
+public abstract class BaseActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my);
+        setContentView(R.layout.toolbar_activity);
+        initActionBar();
+        initContent();
     }
+
+    protected abstract void initActionBar();
+
+    protected abstract void initContent();
+
+
 
 
     @Override
