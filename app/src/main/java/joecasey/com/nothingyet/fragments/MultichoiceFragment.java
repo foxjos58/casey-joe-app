@@ -3,6 +3,7 @@ package joecasey.com.nothingyet.fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +14,15 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import joecasey.com.nothingyet.R;
+import joecasey.com.nothingyet.managers.MultichoiceManager;
+import joecasey.com.nothingyet.models.Multichoice;
 import joecasey.com.nothingyet.utils.AndroidUtils;
 import joecasey.com.nothingyet.utils.Logger;
+import joecasey.com.nothingyet.views.ProgressMeterLayout;
+import joecasey.com.nothingyet.views.RoundedTextLayout;
 
 /**
  * Created by Joe F on 2/17/2015.
@@ -24,15 +30,70 @@ import joecasey.com.nothingyet.utils.Logger;
 public class MultichoiceFragment extends Fragment {
 
     private View mRootView;
-    private static final List<HomeSymbols> HOME_SYMBOLS = new ArrayList<>();
+    private String mType;
+
+    private static final List<Multichoice> MULTICHOICE_LIST;
     static {
-        HOME_SYMBOLS.add(new HomeSymbols("Katakana", R.drawable.abc_ab_share_pack_holo_dark));
-        HOME_SYMBOLS.add(new HomeSymbols("Hiragana", R.drawable.abc_ab_share_pack_holo_dark));
-        HOME_SYMBOLS.add(new HomeSymbols("Both", R.drawable.abc_ab_share_pack_holo_dark));
+        MULTICHOICE_LIST = new ArrayList<>();
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"aa", "sa", "ni", "ke"}, "aa"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ka", "aa", "ba", "ke"}, "ba"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ka", "sa", "ni", "ca"}, "ca"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"da", "sa", "ni", "ke"}, "da"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ka", "ea", "ni", "ke"}, "ea"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ka", "sa", "fa", "ke"}, "fa"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ka", "sa", "ni", "ga"}, "ga"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ha", "sa", "ni", "ke"}, "ha"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ka", "ia", "ni", "ke"}, "ia"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ka", "sa", "ja", "ke"}, "ja"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ka", "sa", "ni", "ke"}, "ka"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ka", "ma", "ni", "ke"}, "ma"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ka", "sa", "na", "ke"}, "na"));
+
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"aa1", "sa", "ni", "ke"}, "aa1"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ka", "aa", "ba1", "ke"}, "ba1"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ka", "sa", "ni", "ca1"}, "ca1"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"da1", "sa", "ni", "ke"}, "da1"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ka", "ea1", "ni", "ke"}, "ea1"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ka", "sa", "fa1", "ke"}, "fa1"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ka", "sa", "ni", "ga1"}, "ga1"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ha1", "sa", "ni", "ke"}, "ha1"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ka", "ia1", "ni", "ke"}, "ia1"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ka", "sa", "ja1", "ke"}, "ja1"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ka1", "sa", "ni", "ke"}, "ka1"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ka", "ma1", "ni", "ke"}, "ma1"));
+        MULTICHOICE_LIST.add(new Multichoice(R.drawable.abc_ab_share_pack_holo_dark,
+                new String[] {"ka", "sa", "na1", "ke"}, "na1"));
+
     }
 
-    public static MultichoiceFragment newInstance() {
+    public static MultichoiceFragment newInstance(String type) {
         MultichoiceFragment multichoiceFragment = new MultichoiceFragment();
+        multichoiceFragment.setType(type);
         return multichoiceFragment;
     }
 
@@ -43,81 +104,72 @@ public class MultichoiceFragment extends Fragment {
         return mRootView;
     }
 
+    private void populatePlaceholderProgresses() {
+        Random random = new Random();
+        for (int i = 0; i < MULTICHOICE_LIST.size(); i++) {
+            Multichoice multichoice = MULTICHOICE_LIST.get(i);
+            MultichoiceManager.setMultichoiceStatus(getActivity(), mType, multichoice.getAnswer(), random.nextInt(3));
+        }
+    }
+
+    public void setType(String type) {
+        mType = type;
+    }
+
     private void initView() {
+        populatePlaceholderProgresses();
+        setCurrentItem(MULTICHOICE_LIST.get(0));
     }
 
-    private static class HomeSymbols {
-        private String name;
-        private int iconId;
-
-        HomeSymbols(String name, int iconId) {
-            this.name = name;
-            this.iconId = iconId;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public int getIconId() {
-            return iconId;
-        }
-
-        public void setIconId(int iconId) {
-            this.iconId = iconId;
-        }
-    }
-
-    private static class HomeGridAdapter extends ArrayAdapter<HomeSymbols> {
-        interface OnItemSelectedListener {
-            public void onItemSelected(int position, HomeSymbols homeSymbols);
-        }
-        private List<HomeSymbols> symbols;
-        private OnItemSelectedListener onItemSelectedListener;
-
-        public HomeGridAdapter(Context context, int resource, List<HomeSymbols> objects) {
-            super(context, resource, objects);
-            this.symbols = objects;
-        }
-
-        public void setOnItemSelectedListener(OnItemSelectedListener onItemSelectedListener) {
-            this.onItemSelectedListener = onItemSelectedListener;
-        }
-
-        @Override
-        public int getCount() {
-            return symbols == null ? 0 : symbols.size();
-        }
-
-        @Override
-        public HomeSymbols getItem(int index) {
-            return symbols.get(index);
-        }
-
-        @Override
-        public View getView(final int position, View convertView, ViewGroup container) {
-            if (convertView == null) {
-                convertView = LayoutInflater.from(getContext()).inflate(R.layout.home_grid_item, container, false);
-            }
-            ((ImageView)convertView.findViewById(R.id.icon)).setImageResource(getItem(position).getIconId());
-            ((TextView)convertView.findViewById(R.id.label)).setText(getItem(position).getName());
-
-            int width = container.getMeasuredWidth();
-            convertView.getLayoutParams().height = (width / 2) + AndroidUtils.toDip(getContext(), 32.f);
-            convertView.forceLayout();
-            convertView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (onItemSelectedListener != null) {
-                        onItemSelectedListener.onItemSelected(position, getItem(position));
-                    }
+    private void setCurrentItem(final Multichoice multichoice) {
+        final View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int status = MultichoiceManager.Status.INCOMPLETE;
+                switch (v.getId()) {
+                    case R.id.choice0:
+                        status = multichoice.getChoices().get(0).equals(multichoice.getAnswer())
+                                ? MultichoiceManager.Status.DONE : MultichoiceManager.Status.INCOMPLETE;
+                        break;
+                    case R.id.choice1:
+                        status = multichoice.getChoices().get(1).equals(multichoice.getAnswer())
+                                ? MultichoiceManager.Status.DONE : MultichoiceManager.Status.INCOMPLETE;
+                        break;
+                    case R.id.choice2:
+                        status = multichoice.getChoices().get(2).equals(multichoice.getAnswer())
+                                ? MultichoiceManager.Status.DONE : MultichoiceManager.Status.INCOMPLETE;
+                        break;
+                    case R.id.choice3:
+                        status = multichoice.getChoices().get(3).equals(multichoice.getAnswer())
+                                ? MultichoiceManager.Status.DONE : MultichoiceManager.Status.INCOMPLETE;
+                        break;
                 }
-            });
-            return convertView;
-        }
+                MultichoiceManager.setMultichoiceStatus(getActivity(), mType, multichoice.getAnswer(), status);
+                int currentMultichoiceIndex = MULTICHOICE_LIST.indexOf(multichoice);
+                currentMultichoiceIndex = currentMultichoiceIndex == MULTICHOICE_LIST.size() - 1
+                        ? 0 : currentMultichoiceIndex + 1;
+                setCurrentItem(MULTICHOICE_LIST.get(currentMultichoiceIndex));
+            }
+        };
+
+        ((RoundedTextLayout)mRootView.findViewById(R.id.choice0)).setText(multichoice.getChoices().get(0));
+        ((RoundedTextLayout)mRootView.findViewById(R.id.choice1)).setText(multichoice.getChoices().get(1));
+        ((RoundedTextLayout)mRootView.findViewById(R.id.choice2)).setText(multichoice.getChoices().get(2));
+        ((RoundedTextLayout)mRootView.findViewById(R.id.choice3)).setText(multichoice.getChoices().get(3));
+
+        mRootView.findViewById(R.id.choice0).setOnClickListener(onClickListener);
+        mRootView.findViewById(R.id.choice1).setOnClickListener(onClickListener);
+        mRootView.findViewById(R.id.choice2).setOnClickListener(onClickListener);
+        mRootView.findViewById(R.id.choice3).setOnClickListener(onClickListener);
+
+        ((ProgressMeterLayout)mRootView.findViewById(R.id.progress_meter)).setMultichoices(mType, MULTICHOICE_LIST);
+        ((ProgressMeterLayout)mRootView.findViewById(R.id.progress_meter)).setOnItemSelectedListener(new ProgressMeterLayout.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(int position, Multichoice multichoice) {
+                setCurrentItem(multichoice);
+            }
+        });
+
+        ((ImageView)mRootView.findViewById(R.id.symbol)).setImageResource(multichoice.getResId());
     }
  }

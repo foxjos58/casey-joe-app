@@ -8,13 +8,12 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import joecasey.com.nothingyet.base.BaseActivity;
-import joecasey.com.nothingyet.fragments.HomeFragment;
-import joecasey.com.nothingyet.fragments.MultichoiceFragment;
-import joecasey.com.nothingyet.utils.Logger;
+import joecasey.com.nothingyet.fragments.ProgressFragment;
 
-
-public class MultichoiceActivity extends BaseActivity {
-
+/**
+ * Created by Joe F on 3/16/2015.
+ */
+public class ProgressActivity extends BaseActivity {
     public static class IntentExtras {
         public static final String TYPE = "type";
     }
@@ -29,7 +28,7 @@ public class MultichoiceActivity extends BaseActivity {
 
     @Override
     protected void initContent() {
-        getSupportFragmentManager().beginTransaction().add(R.id.content_container, MultichoiceFragment.newInstance(mType), "multichoiceFragment").commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.content_container, ProgressFragment.newInstance(mType), "progressFragment").commit();
     }
 
     @Override
@@ -41,7 +40,7 @@ public class MultichoiceActivity extends BaseActivity {
             getSupportActionBar().setDisplayShowCustomEnabled(true);
             TextView title = new TextView(this);
             title.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20.f);
-            title.setText("Multichoice");
+            title.setText(mType);
             title.setTextColor(Color.WHITE);
             getSupportActionBar().setCustomView(title);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

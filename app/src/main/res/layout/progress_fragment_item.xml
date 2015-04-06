@@ -2,28 +2,30 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:padding="4dp">
-        <joecasey.com.nothingyet.views.RoundedImageLayout
-            android:id="@+id/icon"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
+        android:gravity="center">
+
+        <joecasey.com.nothingyet.views.ProgressView
+            android:id="@+id/progress_view"
+            android:layout_width="160dp"
+            android:layout_height="160dp"/>
 
         <TextView
             style="@style/PrimaryText"
             android:id="@+id/label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="8dp"/>
+            android:padding="@dimen/default_spacing"/>
     </LinearLayout>
+
     <View
         android:id="@+id/overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="?android:selectableItemBackground"
         android:clickable="true"/>
+
 </RelativeLayout>

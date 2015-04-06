@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_color">#F01F5A</color>
+    <color name="primary_text">#ff333335</color>
+    <color name="secondary_grey">#707074</color>
+    <color name="primary_accent">#a03030</color>
+    <color name="color_control_activated">#2990ea</color>
+    <color name="color_control_highlight">#cccccc</color>
+    <color name="status_done">#44a0ad</color>
+    <color name="status_incomplete">#8844a0ad</color>
+    <color name="status_bookmarked">@color/primary_color</color>
+</resources>

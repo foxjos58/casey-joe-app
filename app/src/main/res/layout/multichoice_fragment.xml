@@ -15,28 +15,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Button
+        <joecasey.com.nothingyet.views.RoundedTextLayout
             android:id="@+id/choice0"
             android:layout_width="128dp"
             android:layout_height="128dp"
-            android:background="@drawable/pink_circle"
-            android:text="ka"
-            android:textSize="32dp"
-            android:textAllCaps="false"/>
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"/>
 
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1"/>
 
-        <Button
+        <joecasey.com.nothingyet.views.RoundedTextLayout
             android:id="@+id/choice1"
             android:layout_width="128dp"
             android:layout_height="128dp"
-            android:background="@drawable/pink_circle"
-            android:text="ka"
-            android:textSize="32dp"
-            android:textAllCaps="false"/>
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"/>
 
      </LinearLayout>
 
@@ -45,28 +41,24 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp">
 
-        <Button
+        <joecasey.com.nothingyet.views.RoundedTextLayout
             android:id="@+id/choice2"
             android:layout_width="128dp"
             android:layout_height="128dp"
-            android:background="@drawable/pink_circle"
-            android:text="ka"
-            android:textSize="32dp"
-            android:textAllCaps="false"/>
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"/>
 
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1"/>
 
-        <Button
+        <joecasey.com.nothingyet.views.RoundedTextLayout
             android:id="@+id/choice3"
             android:layout_width="128dp"
             android:layout_height="128dp"
-            android:background="@drawable/pink_circle"
-            android:text="ka"
-            android:textSize="32dp"
-            android:textAllCaps="false"/>
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"/>
 
     </LinearLayout>
 
@@ -95,9 +87,9 @@
             android:layout_alignParentRight="true"/>
     </RelativeLayout>
 
-    <View
+    <joecasey.com.nothingyet.views.ProgressMeterLayout
+        android:id="@+id/progress_meter"
         android:layout_width="match_parent"
-        android:layout_height="16dp"
-        android:background="#448866"/>
+        android:layout_height="16dp"/>
 
 </LinearLayout>

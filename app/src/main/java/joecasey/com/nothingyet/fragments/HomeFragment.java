@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,17 +17,20 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import joecasey.com.nothingyet.Constants;
 import joecasey.com.nothingyet.MultichoiceActivity;
+import joecasey.com.nothingyet.ProgressActivity;
 import joecasey.com.nothingyet.R;
+import joecasey.com.nothingyet.base.BaseFragment;
 import joecasey.com.nothingyet.utils.AndroidUtils;
 import joecasey.com.nothingyet.utils.Logger;
+import joecasey.com.nothingyet.views.RoundedImageLayout;
 
 /**
  * Created by Joe F on 2/17/2015.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment {
 
-    private View mRootView;
     private static final List<HomeSymbols> HOME_SYMBOLS = new ArrayList<>();
     static {
         HOME_SYMBOLS.add(new HomeSymbols("Katakana", R.drawable.abc_ab_share_pack_holo_dark));
@@ -40,21 +44,31 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater layoutInflater, ViewGroup container, Bundle savedInstanceState) {
-        mRootView = LayoutInflater.from(container.getContext()).inflate(R.layout.home_fragment, container, false);
-        initView();
-        return mRootView;
+    protected int getLayoutId() {
+        return R.layout.home_fragment;
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         GridView gridView = (GridView)mRootView.findViewById(R.id.home_grid);
         HomeGridAdapter homeGridAdapter;
         gridView.setAdapter(homeGridAdapter = new HomeGridAdapter(getActivity(), R.layout.home_grid_item, HOME_SYMBOLS));
         homeGridAdapter.setOnItemSelectedListener(new HomeGridAdapter.OnItemSelectedListener() {
             @Override
             public void onItemSelected(int position, HomeSymbols homeSymbols) {
-                final Intent intent = new Intent(getActivity(), MultichoiceActivity.class);
-                intent.putExtra(MultichoiceActivity.IntentExtras.TYPE, homeSymbols.getName());
+                final Intent intent = new Intent(getActivity(), ProgressActivity.class);
+                switch (position) {
+                    case 0:
+                    default:
+                        intent.putExtra(ProgressActivity.IntentExtras.TYPE, Constants.OptionType.KATAKANA);
+                        break;
+                    case 1:
+                        intent.putExtra(ProgressActivity.IntentExtras.TYPE, Constants.OptionType.HIRAGANA);
+                        break;
+                    case 2:
+                        intent.putExtra(ProgressActivity.IntentExtras.TYPE, Constants.OptionType.BOTH);
+                        break;
+                }
                 getActivity().startActivity(intent);
             }
         });
@@ -117,13 +131,13 @@ public class HomeFragment extends Fragment {
             if (convertView == null) {
                 convertView = LayoutInflater.from(getContext()).inflate(R.layout.home_grid_item, container, false);
             }
-            ((ImageView)convertView.findViewById(R.id.icon)).setImageResource(getItem(position).getIconId());
+            ((RoundedImageLayout)convertView.findViewById(R.id.icon)).setIconResId(getItem(position).getIconId());
             ((TextView)convertView.findViewById(R.id.label)).setText(getItem(position).getName());
 
             int width = container.getMeasuredWidth();
             convertView.getLayoutParams().height = (width / 2) + AndroidUtils.toDip(getContext(), 32.f);
             convertView.forceLayout();
-            convertView.setOnClickListener(new View.OnClickListener() {
+            convertView.findViewById(R.id.overlay).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (onItemSelectedListener != null) {
